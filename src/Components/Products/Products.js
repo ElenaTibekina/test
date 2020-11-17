@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ProductItem from './ProductItem';
 import './ProductItem.scss';
 
+
 const Products = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -12,12 +13,12 @@ const Products = () => {
 
     const getProducts = async () => {
         setLoading(true);
-        const res = await fetch('/products');
+        const res = await fetch(`${process.env.PUBLIC_URL}/products.json`);
         const data = await res.json();
 
         setProducts(data);
         setLoading(false);
-    }
+    };
 
     if (loading) {
         return <h3>Loading...</h3>
